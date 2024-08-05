@@ -7,6 +7,7 @@ const UserController = {
   },
 
   getUser: async (req, res) => {
+    console.log("bteswa ayre");
     const user = await User.findById(req.params.id);
     res.json(user);
   },
