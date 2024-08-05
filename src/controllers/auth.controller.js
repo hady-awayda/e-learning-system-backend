@@ -1,3 +1,7 @@
+import User from "../models/User.js";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
+
 const AuthController = {
   signup: (req, res) => {
     const { name, email, password } = req.body;
