@@ -17,4 +17,4 @@ router.post("/users/signup", AuthController.signup);
 
 // Course Routes
 
-module.exports = router;
+export default router;
