@@ -27,11 +27,18 @@ const userSchema = new mongoose.Schema(
 userSchema.pre("save", async function (next) {
   if (this.isNew) this.created_by = this._id;
 
+  this.updated_at = Date.now();
+
   if (!this.isModified("password")) return next();
 
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
 
+  next();
+});
+
+userSchema.pre("findOneAndUpdate", function (next) {
+  this.set({ updated_at: Date.now() });
   next();
 });
 

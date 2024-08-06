@@ -30,6 +30,16 @@ const withdrawalSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+withdrawalSchema.pre("save", function (next) {
+  this.updated_at = Date.now();
+  next();
+});
+
+withdrawalSchema.pre("findOneAndUpdate", function (next) {
+  this.set({ updated_at: Date.now() });
+  next();
+});
+
 const Withdrawal = mongoose.model("Withdrawal", withdrawalSchema);
 
 export default Withdrawal;

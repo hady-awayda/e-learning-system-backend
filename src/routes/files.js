@@ -6,29 +6,29 @@ import {
   setUpdatedBy,
   setDeletedBy,
 } from "../middleware/trackChanges.js";
-import WithdrawalController from "../controllers/WithdrawalController.js";
+import FileUploadController from "../controllers/FileUploadController.js";
 
 const router = express.Router();
 
-router.get("/", adminAuthorization, WithdrawalController.getWithdrawals);
-router.get("/:id", userAuthorization, WithdrawalController.getWithdrawal);
+router.get("/", userAuthorization, FileUploadController.getFiles);
+router.get("/:id", userAuthorization, FileUploadController.getFile);
 router.post(
-  "/",
-  userAuthorization,
+  "/upload",
+  adminAuthorization,
   setCreatedBy,
-  WithdrawalController.createWithdrawal
+  FileUploadController.uploadFile
 );
 router.patch(
   "/:id",
   adminAuthorization,
   setUpdatedBy,
-  WithdrawalController.updateWithdrawal
+  FileUploadController.updateFile
 );
 router.delete(
   "/:id",
   adminAuthorization,
   setDeletedBy,
-  WithdrawalController.deleteWithdrawal
+  FileUploadController.deleteFile
 );
 
 export default router;

@@ -21,6 +21,16 @@ const fileSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+fileSchema.pre("save", function (next) {
+  this.updated_at = Date.now();
+  next();
+});
+
+fileSchema.pre("findOneAndUpdate", function (next) {
+  this.set({ updated_at: Date.now() });
+  next();
+});
+
 const File = mongoose.model("File", fileSchema);
 
 export default File;

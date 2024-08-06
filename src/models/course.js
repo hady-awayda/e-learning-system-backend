@@ -21,6 +21,16 @@ const courseSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+courseSchema.pre("save", function (next) {
+  this.updated_at = Date.now();
+  next();
+});
+
+courseSchema.pre("findOneAndUpdate", function (next) {
+  this.set({ updated_at: Date.now() });
+  next();
+});
+
 const Course = mongoose.model("Course", courseSchema);
 
 export default Course;
