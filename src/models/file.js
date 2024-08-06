@@ -26,11 +26,6 @@ fileSchema.pre("save", function (next) {
   next();
 });
 
-fileSchema.pre("findOneAndUpdate", function (next) {
-  this.set({ updated_at: Date.now() });
-  next();
-});
-
 const File = mongoose.model("File", fileSchema);
 
 export default File;

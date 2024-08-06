@@ -22,13 +22,13 @@ const UserController = {
     }
   },
 
-/**
- * Updates a user with the given ID using the request body.
- *
- * @param {Object} req - The request object.
- * @param {Object} res - The response object.
- * @return {Promise<void>} A promise that resolves when the user is updated.
- */
+  /**
+   * Updates a user with the given ID using the request body.
+   *
+   * @param {Object} req - The request object.
+   * @param {Object} res - The response object.
+   * @return {Promise<void>} A promise that resolves when the user is updated.
+   */
   updateUser: async (req, res) => {
     try {
       const user = await User.findByIdAndUpdate(

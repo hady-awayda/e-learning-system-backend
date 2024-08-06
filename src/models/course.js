@@ -26,11 +26,6 @@ courseSchema.pre("save", function (next) {
   next();
 });
 
-courseSchema.pre("findOneAndUpdate", function (next) {
-  this.set({ updated_at: Date.now() });
-  next();
-});
-
 const Course = mongoose.model("Course", courseSchema);
 
 export default Course;

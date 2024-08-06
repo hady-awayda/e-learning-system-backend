@@ -35,11 +35,6 @@ withdrawalSchema.pre("save", function (next) {
   next();
 });
 
-withdrawalSchema.pre("findOneAndUpdate", function (next) {
-  this.set({ updated_at: Date.now() });
-  next();
-});
-
 const Withdrawal = mongoose.model("Withdrawal", withdrawalSchema);
 
 export default Withdrawal;

@@ -8,6 +8,7 @@ export const setCreatedBy = (req, res, next) => {
 export const setUpdatedBy = (req, res, next) => {
   if (req.user) {
     req.body.updated_by = req.user.id;
+    req.body.updated_at = new Date();
   }
   next();
 };
