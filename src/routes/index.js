@@ -1,12 +1,12 @@
 import express from "express";
-import UserController from "../controllers/user.controller.js";
-// import AuthController from "../controllers/auth.controller.js";
+import UserController from "../controllers/UserController.js";
+import AuthController from "../controllers/AuthController.js";
 
 const router = express.Router();
 
 // Auth Routes
-// router.post("/users/signup", AuthController.signup);
-// router.post("/users/login", AuthController.login);
+router.post("/users/register", AuthController.register);
+router.post("/users/login", AuthController.login);
 // router.get("/users/logout", AuthController.logout);
 
 // User Routes

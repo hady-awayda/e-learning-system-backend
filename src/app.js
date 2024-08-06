@@ -4,6 +4,7 @@ import routes from "./routes/index.js";
 import dbConnection from "../config/connection.js";
 
 dotenv.config();
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
