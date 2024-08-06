@@ -1,13 +1,13 @@
 import User from "../models/User.js";
 
 const UserController = {
-/**
- * Retrieves all users from the database and sends them as a JSON response.
- *
- * @param {Object} req - The request object.
- * @param {Object} res - The response object.
- * @return {Promise<void>} - A promise that resolves when the users are sent as a JSON response.
- */
+  /**
+   * Retrieves all users from the database and sends them as a JSON response.
+   *
+   * @param {Object} req - The request object.
+   * @param {Object} res - The response object.
+   * @return {Promise<void>} - A promise that resolves when the users are sent as a JSON response.
+   */
   getUsers: async (req, res) => {
     try {
       const users = await User.find();
@@ -17,13 +17,13 @@ const UserController = {
     }
   },
 
-/**
- * Retrieves a user by their ID and sends the user as a JSON response.
- *
- * @param {Object} req - The request object.
- * @param {Object} res - The response object.
- * @return {Promise<void>} - A promise that resolves when the user is sent as a JSON response.
- */
+  /**
+   * Retrieves a user by their ID and sends the user as a JSON response.
+   *
+   * @param {Object} req - The request object.
+   * @param {Object} res - The response object.
+   * @return {Promise<void>} - A promise that resolves when the user is sent as a JSON response.
+   */
   getUser: async (req, res) => {
     try {
       const user = await User.findById(req.params.id);
@@ -58,6 +58,15 @@ const UserController = {
     }
   },
 
+  /**
+   * Delete a user by ID
+   * @async
+   * @param {Object} req - Express request object
+   * @param {Object} req.params - The request parameters
+   * @param {string} req.params.id - User ID
+   * @param {Object} res - Express response object
+   * @returns {Promise<void>}
+   */
   deleteUser: async (req, res) => {
     try {
       const user = await User.findByIdAndUpdate(req.params.id, req.body, {

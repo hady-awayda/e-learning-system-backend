@@ -10,6 +10,7 @@ const userPayload = (user) => {
 };
 
 const AuthController = {
+  
   register: async (req, res) => {
     const { name, email, password } = req.body;
     try {
