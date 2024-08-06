@@ -1,6 +1,6 @@
 import express from "express";
 import CourseController from "../controllers/CourseController.js";
-import adminAuthorization from "../middleware/adminAuthorization.js";
+import adminAuth from "../middleware/adminAuthorization.js";
 import {
   setCreatedBy,
   setUpdatedBy,
@@ -11,23 +11,8 @@ const router = express.Router();
 
 router.get("/", CourseController.getCourses);
 router.get("/:id", CourseController.getCourse);
-router.post(
-  "/",
-  adminAuthorization,
-  setCreatedBy,
-  CourseController.createCourse
-);
-router.patch(
-  "/:id",
-  adminAuthorization,
-  setUpdatedBy,
-  CourseController.updateCourse
-);
-router.delete(
-  "/:id",
-  adminAuthorization,
-  setDeletedBy,
-  CourseController.deleteCourse
-);
+router.post("/", adminAuth, setCreatedBy, CourseController.createCourse);
+router.patch("/:id", adminAuth, setUpdatedBy, CourseController.updateCourse);
+router.delete("/:id", adminAuth, setDeletedBy, CourseController.deleteCourse);
 
 export default router;

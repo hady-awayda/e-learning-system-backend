@@ -1,4 +1,4 @@
-import authentication from "./authentication";
+import authentication from "./authentication.js";
 
 // Middleware for admin authorization
 const adminAuthorization = (req, res, next) => {

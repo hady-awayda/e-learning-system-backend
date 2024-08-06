@@ -1,6 +1,6 @@
 import express from "express";
-import userAuthorization from "../middleware/adminAuthorization.js";
-import adminAuthorization from "../middleware/adminAuthorization.js";
+import userAuth from "../middleware/adminAuthorization.js";
+import adminAuth from "../middleware/adminAuthorization.js";
 import {
   setCreatedBy,
   setUpdatedBy,
@@ -10,23 +10,18 @@ import WithdrawalController from "../controllers/WithdrawalController.js";
 
 const router = express.Router();
 
-router.get("/", adminAuthorization, WithdrawalController.getWithdrawals);
-router.get("/:id", userAuthorization, WithdrawalController.getWithdrawal);
-router.post(
-  "/",
-  userAuthorization,
-  setCreatedBy,
-  WithdrawalController.createWithdrawal
-);
+router.get("/", adminAuth, WithdrawalController.getWithdrawals);
+router.get("/:id", userAuth, WithdrawalController.getWithdrawal);
+router.post("/", userAuth, setCreatedBy, WithdrawalController.createWithdrawal);
 router.patch(
   "/:id",
-  adminAuthorization,
+  adminAuth,
   setUpdatedBy,
   WithdrawalController.updateWithdrawal
 );
 router.delete(
   "/:id",
-  adminAuthorization,
+  adminAuth,
   setDeletedBy,
   WithdrawalController.deleteWithdrawal
 );
