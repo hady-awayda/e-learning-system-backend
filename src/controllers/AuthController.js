@@ -5,6 +5,12 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+const userPayload = {
+  id: user.id,
+  name: user.name,
+  role: user.role,
+};
+
 const AuthController = {
   register: async (req, res) => {
     const { name, email, password } = req.body;
@@ -18,11 +24,7 @@ const AuthController = {
       await user.save();
 
       const payload = {
-        user: {
-          id: user.id,
-          name: user.name,
-          role: user.role,
-        },
+        user: userPayload,
       };
 
       jwt.sign(
@@ -54,11 +56,7 @@ const AuthController = {
       }
 
       const payload = {
-        user: {
-          id: user.id,
-          name: user.name,
-          role: user.role,
-        },
+        user: userPayload,
       };
 
       jwt.sign(

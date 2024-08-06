@@ -24,10 +24,17 @@ const UserController = {
 
   updateUser: async (req, res) => {
     try {
-      const user = await User.findByIdAndUpdate(req.params.id, req.body, {
-        new: true,
-        runValidators: true,
-      });
+      const user = await User.findByIdAndUpdate(
+        req.params.id,
+        {
+          ...req.body,
+          updated_by: req.user._id,
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
       if (!user) {
         return res.status(404).json({ message: "User not found" });
       }
@@ -39,11 +46,14 @@ const UserController = {
 
   deleteUser: async (req, res) => {
     try {
-      const user = await User.findByIdAndDelete(req.params.id);
+      const user = await User.findById(req.params.id);
       if (!user) {
         return res.status(404).json({ message: "User not found" });
       }
-      res.status(200).json({ message: "User deleted" });
+      user.deleted_at = new Date();
+      user.deleted_by = req.user._id;
+      await user.save();
+      res.status(200).json({ message: "User marked as deleted" });
     } catch (err) {
       res.status(500).json({ message: err.message });
     }
