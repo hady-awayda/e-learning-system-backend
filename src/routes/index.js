@@ -1,4 +1,5 @@
 import express from "express";
+import auth from "../middlewares/auth.js";
 import UserController from "../controllers/UserController.js";
 import AuthController from "../controllers/AuthController.js";
 
@@ -11,7 +12,7 @@ router.post("/users/login", AuthController.login);
 
 // User Routes
 // router.get("/users", UserController.getUsers);
-router.get("/users/:id", UserController.getUser);
+router.get("/users/:id", auth, UserController.getUser);
 // router.patch("/users/:id", UserController.updateUser);
 // router.delete("/users/:id", UserController.deleteUser);
 
