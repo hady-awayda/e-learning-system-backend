@@ -1,6 +1,13 @@
 import User from "../models/User.js";
 
 const UserController = {
+/**
+ * Retrieves all users from the database and sends them as a JSON response.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @return {Promise<void>} - A promise that resolves when the users are sent as a JSON response.
+ */
   getUsers: async (req, res) => {
     try {
       const users = await User.find();
@@ -10,6 +17,13 @@ const UserController = {
     }
   },
 
+/**
+ * Retrieves a user by their ID and sends the user as a JSON response.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @return {Promise<void>} - A promise that resolves when the user is sent as a JSON response.
+ */
   getUser: async (req, res) => {
     try {
       const user = await User.findById(req.params.id);
@@ -31,11 +45,10 @@ const UserController = {
    */
   updateUser: async (req, res) => {
     try {
-      const user = await User.findByIdAndUpdate(
-        req.params.id,
-        { ...req.body },
-        { new: true, runValidators: true }
-      );
+      const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators: true,
+      });
       if (!user) {
         return res.status(404).json({ message: "User not found" });
       }
@@ -45,16 +58,15 @@ const UserController = {
     }
   },
 
-  // wrong method, needs to be rewritten
   deleteUser: async (req, res) => {
     try {
-      const user = await User.findById(req.params.id);
+      const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators: true,
+      });
       if (!user) {
         return res.status(404).json({ message: "User not found" });
       }
-      user.deleted_at = new Date();
-      user.deleted_by = req.user._id;
-      await user.save();
       res.status(200).json({ message: "User marked as deleted" });
     } catch (err) {
       res.status(500).json({ message: err.message });
