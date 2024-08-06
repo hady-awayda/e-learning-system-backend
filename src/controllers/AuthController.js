@@ -5,10 +5,8 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const userPayload = {
-  id: user.id,
-  name: user.name,
-  role: user.role,
+const userPayload = (user) => {
+  return { id: user.id, name: user.name, email: user.email, role: user.role };
 };
 
 const AuthController = {
@@ -24,7 +22,7 @@ const AuthController = {
       await user.save();
 
       const payload = {
-        user: userPayload,
+        user: userPayload(user),
       };
 
       jwt.sign(
