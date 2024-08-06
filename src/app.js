@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import express from "express";
-import routes from "./routes/index.js";
+import userRoutes from "./routes/user.js";
+import authRoutes from "./routes/auth.js";
 import dbConnection from "../config/connection.js";
 
 dotenv.config();
@@ -10,7 +11,8 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-app.use("/api", routes);
+app.use("/api/users", userRoutes);
+app.use("/api/auth", authRoutes);
 
 app.listen(PORT, () => {
   dbConnection();
