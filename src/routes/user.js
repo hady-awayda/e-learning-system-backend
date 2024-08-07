@@ -22,11 +22,11 @@ const router = express.Router();
 // );
 
 // User Routes v3
-router.get("/", adminAuth, UserController.getUsers);
-router.get("/current", userAuth, UserController.getUser);
+router.get("/all", adminAuth, UserController.getUsers);
+router.get("/", userAuth, UserController.getUser);
 // router.get("/:id", userAuth, UserController.getLimitedUser);
-router.patch("/:id", userAuth, UserController.updateUser);
-router.delete("/:id", userAuth, UserController.deleteUser);
+router.patch("/", userAuth, UserController.updateUser);
+router.delete("/", userAuth, UserController.deleteUser);
 
 // User Routes v1
 // router.get("/", UserController.getUsers);

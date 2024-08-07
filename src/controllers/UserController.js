@@ -45,7 +45,7 @@ const UserController = {
    */
   updateUser: async (req, res) => {
     try {
-      const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+      const user = await User.findByIdAndUpdate(req.user.id, req.body, {
         new: true,
         runValidators: true,
       });
@@ -69,7 +69,7 @@ const UserController = {
    */
   deleteUser: async (req, res) => {
     try {
-      const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+      const user = await User.findByIdAndUpdate(req.user.id, req.body, {
         new: true,
         runValidators: true,
       });
