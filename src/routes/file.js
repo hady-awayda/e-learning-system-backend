@@ -1,7 +1,7 @@
 import express from "express";
 import userAuth from "../middleware/userAuthorization.js";
 import adminAuth from "../middleware/adminAuthorization.js";
-import UploadController from "../controllers/FileUploadController.js";
+import FileUploadController from "../controllers/FileUploadController.js";
 import {
   setCreatedBy,
   setUpdatedBy,
@@ -10,10 +10,15 @@ import {
 
 const router = express.Router();
 
-router.get("/", userAuth, UploadController.getFiles);
-router.get("/:id", userAuth, UploadController.getFile);
-router.post("/upload", adminAuth, setCreatedBy, UploadController.uploadFile);
-router.patch("/:id", adminAuth, setUpdatedBy, UploadController.updateFile);
-router.delete("/:id", adminAuth, setDeletedBy, UploadController.deleteFile);
+router.get("/", userAuth, FileUploadController.getFiles);
+router.get("/:id", userAuth, FileUploadController.getFile);
+router.post(
+  "/upload",
+  adminAuth,
+  setCreatedBy,
+  FileUploadController.uploadFile
+);
+router.patch("/:id", adminAuth, setUpdatedBy, FileUploadController.updateFile);
+router.delete("/:id", adminAuth, setDeletedBy, FileUploadController.deleteFile);
 
 export default router;
