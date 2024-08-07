@@ -1,6 +1,31 @@
 import File from "../models/file.js";
 
 const fileUploadController = {
+  uploadFile: [
+    upload.single("file"),
+    async (req, res) => {
+      if (!req.file) {
+        return res.status(400).json({ message: "No file uploaded" });
+      }
+      const file = new File({
+        filename: req.file.filename,
+        originalname: req.file.originalname,
+        path: req.file.path,
+        created_by: req.body.created_by,
+      });
+      try {
+        await file.save();
+        res.status(201).json({
+          filename: req.file.filename,
+          originalname: req.file.originalname,
+          path: req.file.path,
+        });
+      } catch (err) {
+        res.status(400).json({ message: err.message });
+      }
+    },
+  ],
+
   getFiles: async (req, res) => {
     console.log("Hello from the server");
     try {
