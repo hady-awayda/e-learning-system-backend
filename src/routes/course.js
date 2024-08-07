@@ -1,6 +1,6 @@
 import express from "express";
 import adminAuth from "../middleware/adminAuthorization.js";
-import CourseController from "../controllers/CourseController.js";
+import CourseController from "../controllers/courseController.js";
 import {
   setCreatedBy,
   setUpdatedBy,
