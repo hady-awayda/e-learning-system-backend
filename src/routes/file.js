@@ -1,12 +1,12 @@
 import express from "express";
-import userAuth from "./src/middleware/userAuthorization.js";
-import adminAuth from "./src/middleware/adminAuthorization.js";
+import userAuth from "../middleware/userAuthorization.js";
+import adminAuth from "../middleware/adminAuthorization.js";
 import FileUploadController from "../controllers/fileUploadController.js";
 import {
   setCreatedBy,
   setUpdatedBy,
   setDeletedBy,
-} from "./src/middleware/trackChanges.js";
+} from "../middleware/trackChanges.js";
 
 const router = express.Router();
 
