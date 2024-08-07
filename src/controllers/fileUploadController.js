@@ -1,34 +1,31 @@
+import upload from "../../config/multer.js";
 import File from "../models/File.js";
-import multer from "multer";
 import path from "path";
 import fs from "fs";
-
-const upload = multer({
-  dest: "uploads/",
-  limits: { fileSize: 10000000 },
-  fileFilter(req, file, cb) {
-    const ext = path.extname(file.originalname).toLowerCase();
-    if (ext !== ".pdf" && ext !== ".doc" && ext !== ".docx") {
-      return cb(new Error("Only .pdf, .doc, and .docx files are allowed"));
-    }
-    cb(null, true);
-  },
-});
 
 const FileUploadController = {
   uploadFile: [
     upload.single("file"),
     async (req, res) => {
+      if (!req.file) {
+        return res.status(400).json({ message: "No file uploaded" });
+      }
       const file = new File({
         filename: req.file.filename,
         originalname: req.file.originalname,
+        path: req.file.path,
         created_by: req.body.created_by,
       });
-      await file.save();
-      res.status(201).json({
-        filename: req.file.filename,
-        originalname: req.file.originalname,
-      });
+      try {
+        await file.save();
+        res.status(201).json({
+          filename: req.file.filename,
+          originalname: req.file.originalname,
+          path: req.file.path,
+        });
+      } catch (err) {
+        res.status(400).json({ message: err.message });
+      }
     },
   ],
 
@@ -43,9 +40,12 @@ const FileUploadController = {
 
   // fix this method
   getFile: async (req, res) => {
-    const file = await File.findById(req.params.id);
-    const filePath = `uploads/${file.filename}`;
     try {
+      const file = await File.findById(req.params.id);
+      if (!file) {
+        return res.status(404).json({ message: "File not found" });
+      }
+      const filePath = path.resolve(file.path);
       if (!fs.existsSync(filePath)) {
         return res.status(404).json({ message: "File not found" });
       }
