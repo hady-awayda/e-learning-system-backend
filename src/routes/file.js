@@ -11,14 +11,14 @@ import FileUploadController from "../controllers/fileUploadController.js";
 const router = express.Router();
 
 router.get("/", FileUploadController.getFiles);
-// router.get("/:id", userAuth, FileUploadController.getFile);
+router.get("/:id", FileUploadController.getFile);
 // router.post(
 //   "/upload",
 //   adminAuth,
 //   setCreatedBy,
 //   FileUploadController.uploadFile
 // );
-// router.patch("/:id", adminAuth, setUpdatedBy, FileUploadController.updateFile);
-// router.delete("/:id", adminAuth, setDeletedBy, FileUploadController.deleteFile);
+router.patch("/:id", FileUploadController.updateFile);
+router.delete("/:id", FileUploadController.deleteFile);
 
 export default router;
