@@ -1,7 +1,7 @@
 import express from "express";
 import userAuth from "../middleware/userAuthorization.js";
 import adminAuth from "../middleware/adminAuthorization.js";
-import FileUploadController from "../../fileUploadController.js";
+import FileUploadController from "../../uploads/fileUploadController.js";
 import {
   setCreatedBy,
   setUpdatedBy,
