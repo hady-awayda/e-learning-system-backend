@@ -1,7 +1,7 @@
 import express from "express";
-import UserController from "../controllers/UserController.js";
 import userAuth from "../middleware/userAuthorization.js";
 import adminAuth from "../middleware/adminAuthorization.js";
+import UserController from "../controllers/UserController.js";
 import { setUpdatedBy, setDeletedBy } from "../middleware/trackChanges.js";
 
 const router = express.Router();

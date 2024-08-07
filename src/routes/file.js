@@ -1,12 +1,12 @@
 import express from "express";
 import userAuth from "../middleware/userAuthorization.js";
 import adminAuth from "../middleware/adminAuthorization.js";
+import UploadController from "../controllers/fileUploadController.js";
 import {
   setCreatedBy,
   setUpdatedBy,
   setDeletedBy,
 } from "../middleware/trackChanges.js";
-import UploadController from "../controllers/fileUploadController.js";
 
 const router = express.Router();
 

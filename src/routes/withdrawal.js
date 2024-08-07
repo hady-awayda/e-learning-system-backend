@@ -1,12 +1,12 @@
 import express from "express";
 import userAuth from "../middleware/userAuthorization.js";
 import adminAuth from "../middleware/adminAuthorization.js";
+import WithdrawalController from "../controllers/withdrawalController.js";
 import {
   setCreatedBy,
   setUpdatedBy,
   setDeletedBy,
 } from "../middleware/trackChanges.js";
-import WithdrawalController from "../controllers/withdrawalController.js";
 
 const router = express.Router();
 
