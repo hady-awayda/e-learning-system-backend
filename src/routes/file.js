@@ -12,12 +12,12 @@ const router = express.Router();
 
 router.get("/", FileUploadController.getFiles);
 router.get("/:id", FileUploadController.getFile);
-// router.post(
-//   "/upload",
-//   adminAuth,
-//   setCreatedBy,
-//   FileUploadController.uploadFile
-// );
+router.post(
+  "/upload",
+  adminAuth,
+  setCreatedBy,
+  FileUploadController.uploadFile
+);
 router.patch("/:id", FileUploadController.updateFile);
 router.delete("/:id", FileUploadController.deleteFile);
 
