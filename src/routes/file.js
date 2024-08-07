@@ -11,14 +11,14 @@ import {
 const router = express.Router();
 
 router.get("/", userAuth, FileUploadController.getFiles);
-router.get("/:id", userAuth, FileUploadController.getFile);
-router.post(
-  "/upload",
-  adminAuth,
-  setCreatedBy,
-  FileUploadController.uploadFile
-);
-router.patch("/:id", adminAuth, setUpdatedBy, FileUploadController.updateFile);
-router.delete("/:id", adminAuth, setDeletedBy, FileUploadController.deleteFile);
+// router.get("/:id", userAuth, FileUploadController.getFile);
+// router.post(
+//   "/upload",
+//   adminAuth,
+//   setCreatedBy,
+//   FileUploadController.uploadFile
+// );
+// router.patch("/:id", adminAuth, setUpdatedBy, FileUploadController.updateFile);
+// router.delete("/:id", adminAuth, setDeletedBy, FileUploadController.deleteFile);
 
 export default router;
