@@ -23,7 +23,8 @@ const router = express.Router();
 
 // User Routes v3
 router.get("/", adminAuth, UserController.getUsers);
-router.get("/:id", userAuth, UserController.getUser);
+router.get("/current", userAuth, UserController.getUser);
+// router.get("/:id", userAuth, UserController.getLimitedUser);
 router.patch("/:id", userAuth, UserController.updateUser);
 router.delete("/:id", userAuth, UserController.deleteUser);
 
