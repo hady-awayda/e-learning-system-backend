@@ -1,4 +1,7 @@
 import File from "../models/file.js";
+import upload from "../config/multer.js";
+import path from "path";
+import fs from "fs";
 
 const fileUploadController = {
   uploadFile: [
