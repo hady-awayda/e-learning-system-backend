@@ -1,35 +1,10 @@
-import upload from "../../config/multer.js";
-import File from "../models/File.js";
+import File from "../models/file.js";
 import path from "path";
 import fs from "fs";
 
-const FileUploadController = {
-  uploadFile: [
-    upload.single("file"),
-    async (req, res) => {
-      if (!req.file) {
-        return res.status(400).json({ message: "No file uploaded" });
-      }
-      const file = new File({
-        filename: req.file.filename,
-        originalname: req.file.originalname,
-        path: req.file.path,
-        created_by: req.body.created_by,
-      });
-      try {
-        await file.save();
-        res.status(201).json({
-          filename: req.file.filename,
-          originalname: req.file.originalname,
-          path: req.file.path,
-        });
-      } catch (err) {
-        res.status(400).json({ message: err.message });
-      }
-    },
-  ],
-
+const fileUploadController = {
   getFiles: async (req, res) => {
+    console.log("Hello from the server");
     try {
       const files = await File.find();
       res.status(200).json(files);
@@ -86,4 +61,4 @@ const FileUploadController = {
   },
 };
 
-export default FileUploadController;
+export default fileUploadController;
