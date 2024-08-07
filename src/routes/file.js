@@ -6,7 +6,7 @@ import {
   setUpdatedBy,
   setDeletedBy,
 } from "../middleware/trackChanges.js";
-import UploadController from "../controllers/FileUploadController.js";
+import UploadController from "../controllers/fileUploadController.js";
 
 const router = express.Router();
 

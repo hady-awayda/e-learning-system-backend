@@ -1,7 +1,7 @@
 import File from "../models/File.js";
 import upload from "../config/s3.js";
 
-const FileUploadController = {
+const FileUploadControllerS3 = {
   uploadFile: [
     upload.single("file"),
     async (req, res) => {
@@ -71,4 +71,4 @@ const FileUploadController = {
   },
 };
 
-export default FileUploadController;
+export default FileUploadControllerS3;

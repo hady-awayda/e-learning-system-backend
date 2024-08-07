@@ -5,7 +5,7 @@ import fs from "fs";
 
 const upload = multer({
   dest: "uploads/",
-  limits: { fileSize: 10000000 }, // 10 MB limit
+  limits: { fileSize: 10000000 },
   fileFilter(req, file, cb) {
     const ext = path.extname(file.originalname).toLowerCase();
     if (ext !== ".pdf" && ext !== ".doc" && ext !== ".docx") {
