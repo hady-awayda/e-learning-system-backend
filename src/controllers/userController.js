@@ -1,4 +1,4 @@
-import User from "../models/temp.js";
+import User from "../models/user.js";
 
 const UserController = {
   /**
