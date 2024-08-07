@@ -6,7 +6,7 @@ import {
   setUpdatedBy,
   setDeletedBy,
 } from "../middleware/trackChanges.js";
-import WithdrawalController from "../controllers/WithdrawalController.js";
+import WithdrawalController from "../controllers/withdrawalController.js";
 
 const router = express.Router();
 
