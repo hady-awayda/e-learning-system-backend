@@ -1,24 +1,24 @@
 import express from "express";
-// import userAuth from "../middleware/userAuthorization.js";
-// import adminAuth from "../middleware/adminAuthorization.js";
+import userAuth from "./src/middleware/userAuthorization.js";
+import adminAuth from "./src/middleware/adminAuthorization.js";
 import FileUploadController from "../controllers/fileUploadController.js";
-// import {
-//   setCreatedBy,
-//   setUpdatedBy,
-//   setDeletedBy,
-// } from "../middleware/trackChanges.js";
+import {
+  setCreatedBy,
+  setUpdatedBy,
+  setDeletedBy,
+} from "./src/middleware/trackChanges.js";
 
 const router = express.Router();
 
-router.get("/", FileUploadController.getFiles);
-router.get("/:id", FileUploadController.getFile);
+router.get("/", userAuth, FileUploadController.getFiles);
+router.get("/:id", userAuth, FileUploadController.getFile);
 router.post(
   "/upload",
-  // adminAuth,
-  // setCreatedBy,
+  adminAuth,
+  setCreatedBy,
   FileUploadController.uploadFile
 );
-router.patch("/:id", FileUploadController.updateFile);
-router.delete("/:id", FileUploadController.deleteFile);
+router.patch("/:id", adminAuth, setUpdatedBy, FileUploadController.updateFile);
+router.delete("/:id", adminAuth, setDeletedBy, FileUploadController.deleteFile);
 
 export default router;

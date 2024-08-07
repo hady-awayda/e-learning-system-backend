@@ -1,5 +1,5 @@
-import File from "../models/file.js";
 import upload from "../../config/multer.js";
+import File from "../models/file.js";
 import path from "path";
 import fs from "fs";
 
