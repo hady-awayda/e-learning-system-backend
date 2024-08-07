@@ -14,8 +14,8 @@ router.get("/", FileUploadController.getFiles);
 router.get("/:id", FileUploadController.getFile);
 router.post(
   "/upload",
-  adminAuth,
-  setCreatedBy,
+  // adminAuth,
+  // setCreatedBy,
   FileUploadController.uploadFile
 );
 router.patch("/:id", FileUploadController.updateFile);
