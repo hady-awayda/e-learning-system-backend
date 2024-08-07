@@ -5,6 +5,7 @@ import authRoutes from "./routes/auth.js";
 import fileRoutes from "./routes/file.js";
 import courseRoutes from "./routes/course.js";
 import dbConnection from "../config/connection.js";
+import enrollmentRoutes from "./routes/enrollment.js";
 import withdrawalRoutes from "./routes/withdrawal.js";
 
 dotenv.config();
@@ -19,6 +20,7 @@ app.use("/api/courses", courseRoutes);
 app.use("/api/files", fileRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/withdrawals", withdrawalRoutes);
+app.use("/api/enrollment", enrollmentRoutes);
 
 app.listen(PORT, () => {
   dbConnection();
