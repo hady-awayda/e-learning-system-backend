@@ -1,6 +1,7 @@
 import express from "express";
 import userAuth from "../middleware/userAuthorization.js";
 import { setUpdatedBy } from "../middleware/trackChanges.js";
+import EnrollmentController from "../controllers/enrollmentController.js";
 
 const router = express.Router();
 
