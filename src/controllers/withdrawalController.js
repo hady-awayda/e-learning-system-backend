@@ -1,4 +1,4 @@
-import Withdrawal from "../models/Withdrawal.js";
+import Withdrawal from "../models/withdrawal.js";
 
 const WithdrawalController = {
   getWithdrawals: async (req, res) => {
