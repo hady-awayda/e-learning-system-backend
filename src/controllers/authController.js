@@ -63,7 +63,7 @@ const AuthController = {
         { expiresIn: "1y" },
         (err, token) => {
           if (err) throw err;
-          res.status(200).json({ token });
+          res.status(200).json({ role: user.role, token });
         }
       );
     } catch (err) {
