@@ -10,9 +10,17 @@ import withdrawalRoutes from "./routes/withdrawal.js";
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
 app.use(express.json());
+
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+  })
+);
 
 app.use("/api/auth", authRoutes);
 app.use("/api/courses", courseRoutes);
@@ -20,7 +28,7 @@ app.use("/api/files", fileRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/withdrawals", withdrawalRoutes);
 
-app.listen(PORT, () => {
+app.listen(port, () => {
   dbConnection();
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });
