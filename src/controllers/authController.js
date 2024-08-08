@@ -21,9 +21,7 @@ const AuthController = {
       user = new User({ name, email, password });
       await user.save();
 
-      const payload = {
-        user: userPayload(user),
-      };
+      const payload = userPayload(user);
 
       jwt.sign(
         payload,
@@ -53,9 +51,7 @@ const AuthController = {
         return res.status(400).json({ message: "Invalid credentials" });
       }
 
-      const payload = {
-        user: userPayload(user),
-      };
+      const payload = userPayload(user);
 
       jwt.sign(
         payload,
