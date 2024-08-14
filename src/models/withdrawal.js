@@ -35,6 +35,17 @@ withdrawalSchema.pre("save", function (next) {
   next();
 });
 
+withdrawalSchema.post("save", async function (doc, next) {
+  try {
+    await User.findByIdAndUpdate(doc.user, {
+      $addToSet: { withdrawals: doc._id },
+    });
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
+
 const Withdrawal = mongoose.model("Withdrawal", withdrawalSchema);
 
 export default Withdrawal;

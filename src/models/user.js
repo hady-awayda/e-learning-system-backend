@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema(
     password: { type: String, required: true, select: false },
     role: { type: String, enum: ["admin", "student"], default: "student" },
     courses: [{ type: mongoose.Schema.Types.ObjectId, ref: "Course" }],
+    withdrawals: [{ type: mongoose.Schema.Types.ObjectId, ref: "Withdrawal" }],
     created_by: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     updated_by: {
       type: mongoose.Schema.Types.ObjectId,

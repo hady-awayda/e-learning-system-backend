@@ -1,3 +1,4 @@
+import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import userRoutes from "./routes/user.js";
@@ -11,9 +12,17 @@ import withdrawalRoutes from "./routes/withdrawal.js";
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 
 app.use(express.json());
+
+app.use(
+  cors({
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+  })
+);
 
 app.use("/api/auth", authRoutes);
 app.use("/api/courses", courseRoutes);
@@ -22,7 +31,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/withdrawals", withdrawalRoutes);
 app.use("/api/enrollment", enrollmentRoutes);
 
-app.listen(PORT, () => {
+app.listen(port, () => {
   dbConnection();
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });

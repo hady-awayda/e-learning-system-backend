@@ -21,9 +21,7 @@ const AuthController = {
       user = new User({ name, email, password });
       await user.save();
 
-      const payload = {
-        user: userPayload(user),
-      };
+      const payload = userPayload(user);
 
       jwt.sign(
         payload,
@@ -31,7 +29,7 @@ const AuthController = {
         { expiresIn: "1y" },
         (err, token) => {
           if (err) throw err;
-          res.status(201).json({ token });
+          res.status(201).json({ role: user.role, token });
         }
       );
     } catch (err) {
@@ -43,7 +41,7 @@ const AuthController = {
   login: async (req, res) => {
     const { email, password } = req.body;
     try {
-      let user = await User.findOne({ email });
+      let user = await User.findOne({ email }).select("+password");
       if (!user) {
         return res.status(400).json({ message: "Invalid credentials" });
       }
@@ -53,9 +51,7 @@ const AuthController = {
         return res.status(400).json({ message: "Invalid credentials" });
       }
 
-      const payload = {
-        user: userPayload(user),
-      };
+      const payload = userPayload(user);
 
       jwt.sign(
         payload,
@@ -63,7 +59,7 @@ const AuthController = {
         { expiresIn: "1y" },
         (err, token) => {
           if (err) throw err;
-          res.status(200).json({ token });
+          res.status(200).json({ role: user.role, token });
         }
       );
     } catch (err) {
