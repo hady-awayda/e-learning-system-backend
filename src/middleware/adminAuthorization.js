@@ -6,7 +6,9 @@ const adminAuthorization = (req, res, next) => {
     if (req.user && req.user.role === "admin") {
       next();
     } else {
-      res.status(403).json({ message: "Admin authorization required" });
+      res.status(403).json({
+        message: "Unauthorized, please sign in as an admin",
+      });
     }
   });
 };
