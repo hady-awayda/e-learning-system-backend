@@ -4,9 +4,7 @@ const CourseController = {
   getCourses: async (req, res) => {
     try {
       const courses = await Course.find();
-      res
-        .status(200)
-        .json({ message: "Courses retrieved successfully" }, courses);
+      res.status(200).json(courses);
     } catch (err) {
       res.status(500).json({ message: err.message });
     }

@@ -23,5 +23,6 @@ jobs:
           script: |
             cd /home/ubuntu/elearning-system
             sudo git pull
+            pm2 restart 0
             # sudo chmod +x deploy.sh
             # ./deploy.sh
