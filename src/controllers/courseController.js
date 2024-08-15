@@ -1,9 +1,10 @@
 import Course from "../models/course.js";
+import { GetCourses } from "../services/courses.js";
 
 const CourseController = {
   getCourses: async (req, res) => {
     try {
-      const courses = await Course.find();
+      const courses = GetCourses();
       res.status(200).json(courses);
     } catch (err) {
       res.status(500).json({ message: err.message });
